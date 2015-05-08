@@ -1,0 +1,33 @@
+---
+# Generate encypted password here: http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+- hosts: all
+  user: root
+  sudo: yes
+  roles:
+    - franklinkim.sftp
+  vars:
+    sftp_users_group: ftp
+    sftp_users:
+      - username: foobar
+        name: Foo Bar
+        password: '$1$somesalt$jezmI5TSY7mVTzHLgsK5L.'
+        home: /home/foobar
+        mount_points:
+          - name: tmp
+            path: /tmp
+      - username: jonathanhle
+        name: Jonathan Le
+        password: '$6$cTV1OIuj$/VD4IIKtBC.imr0MJ27yKfrFLliJOsD/hf09eIcuYAFqdBaC8fClVF6DAc7GayKhICFHvfTnM2ADFIAWPhrIf.'
+        home: /home/jonathanhle
+        groups:
+          - root
+        mount_points:
+          - name: varwww
+            path: /var/www/
+      - username: blahblah
+        name: Blah Stuff
+        password: '$6$cTV1OIuj$/VD4IIKtBC.imr0MJ27yKfrFLliJOsD/hf09eIcuYAFqdBaC8fClVF6DAc7GayKhICFHvfTnM2ADFIAWPhrIf.'
+        home: /home/jonathanhle
+        mount_points:
+          - name: varwwwhtml
+            path: /var/www/html
